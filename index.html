@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wheel of Mufradat — Roda Misteri Mufradat Tahun 2</title>
+  <title>Wheel Of Mufradat — Roda Misteri Mufradat Tahun 2</title>
   
   <!-- Google Fonts: Poppins (Clean Modern Kawaii Latin) & Noto Naskh Arabic (Standard School Arabic) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -841,7 +841,7 @@
     <header class="top-bar">
       <div class="player-pill" id="topPlayerPill" title="Nama Pemain Aktif">
         <span>👤</span>
-        <span id="topPlayerNameDisplay"> </span>
+        <span id="topPlayerNameDisplay"></span>
       </div>
 
       <div class="top-stats">
@@ -875,7 +875,7 @@
       <section class="player-input-box">
         <label for="inputPlayerName">Nama Murid / Pemain:</label>
         <div class="input-row">
-          <input type="text" id="inputPlayerName" maxlength="20" placeholder="Contoh: Aisyah / Daniel" value=" ">
+          <input type="text" id="inputPlayerName" maxlength="20" placeholder="Contoh: Aisyah / Daniel" value="">
           <button class="btn-kawaii btn-kawaii-secondary" id="btnSavePlayerName">Simpan</button>
         </div>
       </section>
@@ -1209,7 +1209,7 @@
         if (raw) return JSON.parse(raw);
       } catch (e) {}
       return {
-        playerName: ' ',
+        playerName: '',
         unlockedLevel: 1,
         totalScore: 0,
         totalStars: 0,
@@ -1439,10 +1439,35 @@
   }
 
   function updateTopBar() {
-    document.getElementById('topPlayerNameDisplay').textContent = gameState.profile.playerName || ' ';
+    document.getElementById('topPlayerNameDisplay').textContent = gameState.profile.playerName || '';
     document.getElementById('topScoreDisplay').textContent = gameState.profile.totalScore.toLocaleString();
     document.getElementById('topStarsDisplay').textContent = gameState.profile.totalStars;
     document.getElementById('btnToggleSound').textContent = gameState.profile.soundEnabled ? '🔊' : '🔇';
+  }
+
+  function validatePlayerNameBeforeStart() {
+    const input = document.getElementById('inputPlayerName');
+    const nameVal = input ? input.value.trim() : (gameState.profile.playerName || '').trim();
+
+    if (!nameVal || nameVal === '') {
+      if (input) {
+        input.classList.remove('input-error');
+        void input.offsetWidth; // Force CSS reflow to re-trigger shake animation
+        input.classList.add('input-error');
+        input.focus();
+      }
+      showToast('⚠️ Sila masukkan nama anda sebelum mula!');
+      KawaiiAudio.incorrect();
+      return false;
+    }
+
+    if (input) {
+      input.classList.remove('input-error');
+    }
+    gameState.profile.playerName = nameVal;
+    GameStorage.saveData(gameState.profile);
+    updateTopBar();
+    return true;
   }
 
   function escapeHtml(str) {
@@ -1492,7 +1517,7 @@
   }
 
   function updateLiveScoreboardEntry(isFinished = false) {
-    const activePlayerName = gameState.profile.playerName || ' ';
+    const activePlayerName = gameState.profile.playerName || '';
     const totalQ = gameState.levelQuestions.length || 20;
     const answeredCount = gameState.currentQuestionIndex + (gameState.hasAnsweredQuestion ? 1 : 0);
     const accuracy = answeredCount > 0 ? Math.round((gameState.levelCorrectCount / answeredCount) * 100) + '%' : '0%';
@@ -1537,6 +1562,7 @@
 
       if (isUnlocked) {
         item.addEventListener('click', () => {
+          if (!validatePlayerNameBeforeStart()) return;
           KawaiiAudio.click();
           startLevel(id);
         });
@@ -1896,7 +1922,7 @@
     updateTopBar();
     renderLevelCards();
 
-    const activePlayerName = gameState.profile.playerName || ' ';
+    const activePlayerName = gameState.profile.playerName || '';
     document.getElementById('resultsTitle').textContent = `TAHNIAH, ${activePlayerName.toUpperCase()}!`;
     document.getElementById('resCorrectCount').textContent = `${correct} / ${totalQ}`;
     document.getElementById('resEarnedScore').textContent = `+${gameState.levelEarnedScore}`;
@@ -1991,7 +2017,12 @@
 
     const inputName = document.getElementById('inputPlayerName');
     if (inputName) {
-      inputName.value = gameState.profile.playerName || ' ';
+      inputName.value = gameState.profile.playerName || '';
+      inputName.addEventListener('input', () => {
+        if (inputName.value.trim().length > 0) {
+          inputName.classList.remove('input-error');
+        }
+      });
     }
 
     const btnSaveName = document.getElementById('btnSavePlayerName');
@@ -2005,6 +2036,10 @@
           updateTopBar();
           showToast('Nama pemain disimpan!');
           KawaiiAudio.click();
+        } else {
+          inputName.classList.add('input-error');
+          showToast('⚠️ Sila masukkan nama terlebih dahulu!');
+          KawaiiAudio.incorrect();
         }
       });
     }
@@ -2023,6 +2058,7 @@
     const btnStart = document.getElementById('btnStartGame');
     if (btnStart) {
       btnStart.addEventListener('click', () => {
+        if (!validatePlayerNameBeforeStart()) return;
         KawaiiAudio.click();
         startLevel(gameState.profile.unlockedLevel);
       });
