@@ -1137,36 +1137,6 @@
         localStorage.setItem(this.SCOREBOARD_KEY, JSON.stringify(list));
       } catch (e) {}
     },
-    getPlayerStats(name) {
-      const cleanName = (name || '').trim().toLowerCase();
-      if (!cleanName) {
-        return {
-          totalScore: 0,
-          totalStars: 0,
-          levelScores: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
-        };
-      }
-      const list = this.getScoreboard();
-      const entry = list.find(item => (item.name || '').trim().toLowerCase() === cleanName);
-      if (entry) {
-        const levelScores = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
-        if (entry.levels && typeof entry.levels === 'object') {
-          for (let i = 1; i <= 5; i++) {
-            levelScores[i] = Number(entry.levels[i] || 0);
-          }
-        }
-        return {
-          totalScore: Number(entry.totalScore || 0),
-          totalStars: Number(entry.stars || 0),
-          levelScores: levelScores
-        };
-      }
-      return {
-        totalScore: 0,
-        totalStars: 0,
-        levelScores: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
-      };
-    },
     // Instant cumulative update by Player Name
     syncRealtimeScore({ name, levelId, levelScore, levelStars }) {
       const cleanName = (name || '').trim();
