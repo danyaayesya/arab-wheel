@@ -791,7 +791,7 @@
       <section class="player-input-box">
         <label for="inputPlayerName">Nama Murid / Pemain:</label>
         <div class="input-row">
-          <input type="text" id="inputPlayerName" maxlength="20" placeholder="Contoh: Aisyah / Daniel" value="">
+          <input type="text" id="inputPlayerName" maxlength="20" placeholder="Contoh: Aisyah / Daniel" value="" autocomplete="off">
           <button class="btn-kawaii btn-kawaii-secondary" id="btnSavePlayerName">Simpan</button>
         </div>
       </section>
@@ -1998,12 +1998,15 @@
   }
 
   window.addEventListener('DOMContentLoaded', () => {
+    // Pastikan ruangan nama sentiasa kosong semasa mula dimuatkan
+    gameState.profile.playerName = '';
+    
     updateTopBar();
     renderLevelCards();
 
     const inputName = document.getElementById('inputPlayerName');
     if (inputName) {
-      inputName.value = gameState.profile.playerName || '';
+      inputName.value = '';
       inputName.addEventListener('input', () => {
         if (inputName.value.trim().length > 0) {
           inputName.classList.remove('input-error');
