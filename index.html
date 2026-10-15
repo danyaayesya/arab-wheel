@@ -841,7 +841,7 @@
     <header class="top-bar">
       <div class="player-pill" id="topPlayerPill" title="Nama Pemain Aktif">
         <span>👤</span>
-        <span id="topPlayerNameDisplay">Pemain Cilik</span>
+        <span id="topPlayerNameDisplay"> </span>
       </div>
 
       <div class="top-stats">
@@ -875,7 +875,7 @@
       <section class="player-input-box">
         <label for="inputPlayerName">Nama Murid / Pemain:</label>
         <div class="input-row">
-          <input type="text" id="inputPlayerName" maxlength="20" placeholder="Contoh: Aisyah / Daniel" value="Pemain Cilik">
+          <input type="text" id="inputPlayerName" maxlength="20" placeholder="Contoh: Aisyah / Daniel" value=" ">
           <button class="btn-kawaii btn-kawaii-secondary" id="btnSavePlayerName">Simpan</button>
         </div>
       </section>
@@ -893,7 +893,7 @@
       <!-- LEVEL SELECTION LIST -->
       <section>
         <div style="font-weight:700; font-size:0.95rem; color:var(--lavender-accent); text-align:left; margin-bottom: 8px;">
-          Pilih Tahap (5 Tahap / 100 Soalan):
+          Pilih Level (5 Level / 100 Soalan):
         </div>
         <div class="levels-list" id="levelsContainer">
           <!-- Dynamically injected via JavaScript -->
@@ -911,7 +911,7 @@
     <!-- SCREEN 2: WHEEL SPINNING STAGE -->
     <section id="screenWheel" class="kawaii-card hidden">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-        <span class="quiz-sub-badge" id="wheelLevelTitle">Tahap 1 — Dunia Sekolah</span>
+        <span class="quiz-sub-badge" id="wheelLevelTitle">Level 1 — Dunia Sekolah</span>
         <span style="font-weight: 700; font-size: 0.85rem; color: var(--lavender-accent);" id="wheelProgressLabel">Soalan 1 / 20</span>
       </div>
 
@@ -949,7 +949,7 @@
       </div>
 
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <span class="quiz-sub-badge" id="quizLevelBadge">Tahap 1</span>
+        <span class="quiz-sub-badge" id="quizLevelBadge">Level 1</span>
         <span style="font-size: 0.82rem; font-weight: 700; color: var(--pink-deep);" id="quizRewardActiveTag">🏆 100 Mata</span>
       </div>
 
@@ -1005,7 +1005,7 @@
 
       <div style="display:flex; flex-direction:column; gap:10px; align-items:center; margin-top: 14px;">
         <button class="btn-kawaii btn-kawaii-primary" id="btnNextLevelOrReplay" style="width:100%; max-width: 280px;">
-          TAHAP SETERUSNYA ➔
+          Level SETERUSNYA ➔
         </button>
         <button class="btn-kawaii btn-kawaii-secondary" id="btnBackToHomeFromResults" style="width:100%; max-width: 280px;">
           🏠 Menu Utama
@@ -1034,7 +1034,7 @@
             <tr>
               <th style="width: 14%;">#</th>
               <th style="width: 46%;">Nama & Status</th>
-              <th style="width: 20%;">Tahap</th>
+              <th style="width: 20%;">Level</th>
               <th style="width: 20%; text-align: right;">Mata</th>
             </tr>
           </thead>
@@ -1065,7 +1065,7 @@
         <p style="margin-bottom: 8px;"><strong>1. Tulis Nama:</strong> Masukkan nama murid supaya markah dicatat dalam papan skor.</p>
         <p style="margin-bottom: 8px;"><strong>2. Pusing Roda:</strong> Setiap soalan dimulakan dengan putaran roda hadiah untuk menentukan mata ganjaran (100–350 mata atau bintang bonus!).</p>
         <p style="margin-bottom: 8px;"><strong>3. Sifar Petunjuk:</strong> Pilih satu jawapan yang betul tanpa bantuan petunjuk. Selepas menjawab, jawapan sebenar akan disemak.</p>
-        <p style="margin-bottom: 8px;"><strong>4. 5 Tahap Pembelajaran:</strong> Lengkapkan 20 soalan dalam setiap tahap untuk membuka tahap seterusnya.</p>
+        <p style="margin-bottom: 8px;"><strong>4. 5 Level Pembelajaran:</strong> Lengkapkan 20 soalan dalam setiap Level untuk membuka Level seterusnya.</p>
       </div>
 
       <div style="text-align: center; margin-top: 16px;">
@@ -1209,7 +1209,7 @@
         if (raw) return JSON.parse(raw);
       } catch (e) {}
       return {
-        playerName: 'Pemain Cilik',
+        playerName: ' ',
         unlockedLevel: 1,
         totalScore: 0,
         totalStars: 0,
@@ -1439,7 +1439,7 @@
   }
 
   function updateTopBar() {
-    document.getElementById('topPlayerNameDisplay').textContent = gameState.profile.playerName || 'Pemain Cilik';
+    document.getElementById('topPlayerNameDisplay').textContent = gameState.profile.playerName || ' ';
     document.getElementById('topScoreDisplay').textContent = gameState.profile.totalScore.toLocaleString();
     document.getElementById('topStarsDisplay').textContent = gameState.profile.totalStars;
     document.getElementById('btnToggleSound').textContent = gameState.profile.soundEnabled ? '🔊' : '🔇';
@@ -1492,7 +1492,7 @@
   }
 
   function updateLiveScoreboardEntry(isFinished = false) {
-    const activePlayerName = gameState.profile.playerName || 'Pemain Cilik';
+    const activePlayerName = gameState.profile.playerName || ' ';
     const totalQ = gameState.levelQuestions.length || 20;
     const answeredCount = gameState.currentQuestionIndex + (gameState.hasAnsweredQuestion ? 1 : 0);
     const accuracy = answeredCount > 0 ? Math.round((gameState.levelCorrectCount / answeredCount) * 100) + '%' : '0%';
@@ -1500,7 +1500,7 @@
     GameStorage.syncRealtimeScore({
       sessionId: gameState.currentSessionId,
       name: activePlayerName,
-      level: `Tahap ${gameState.currentLevelId}`,
+      level: `Level ${gameState.currentLevelId}`,
       score: gameState.levelEarnedScore,
       stars: gameState.levelEarnedStars,
       currentQ: Math.min(answeredCount, totalQ),
@@ -1526,7 +1526,7 @@
         <div class="level-item-info">
           <div class="level-num-badge">${id}</div>
           <div>
-            <div class="level-name">Tahap ${id} — ${lvlData.name}</div>
+            <div class="level-name">Level ${id} — ${lvlData.name}</div>
             <div class="level-sub">20 Soalan Mufradat ${bestScore > 0 ? `• Rekod: ${bestScore} mata` : ''}</div>
           </div>
         </div>
@@ -1653,7 +1653,7 @@
 
   function prepareWheelStage() {
     const qNum = gameState.currentQuestionIndex + 1;
-    document.getElementById('wheelLevelTitle').textContent = `Tahap ${gameState.currentLevelId} — ${VOCABULARY_BANK[gameState.currentLevelId].name}`;
+    document.getElementById('wheelLevelTitle').textContent = `Level ${gameState.currentLevelId} — ${VOCABULARY_BANK[gameState.currentLevelId].name}`;
     document.getElementById('wheelProgressLabel').textContent = `Soalan ${qNum} / 20`;
     document.getElementById('rewardDisplayBanner').textContent = '🎯 Tekan PUSING RODA untuk mula!';
     document.getElementById('btnSpinWheel').disabled = false;
@@ -1739,7 +1739,7 @@
     const qData = gameState.levelQuestions[gameState.currentQuestionIndex];
     const qNum = gameState.currentQuestionIndex + 1;
 
-    document.getElementById('quizLevelBadge').textContent = `Tahap ${gameState.currentLevelId} • Soalan ${qNum} / 20`;
+    document.getElementById('quizLevelBadge').textContent = `Level ${gameState.currentLevelId} • Soalan ${qNum} / 20`;
     document.getElementById('quizProgressBar').style.width = `${(qNum / 20) * 100}%`;
     document.getElementById('quizRewardActiveTag').textContent = `🎁 Ganjaran: ${gameState.currentReward.label}`;
 
@@ -1896,7 +1896,7 @@
     updateTopBar();
     renderLevelCards();
 
-    const activePlayerName = gameState.profile.playerName || 'Pemain Cilik';
+    const activePlayerName = gameState.profile.playerName || ' ';
     document.getElementById('resultsTitle').textContent = `TAHNIAH, ${activePlayerName.toUpperCase()}!`;
     document.getElementById('resCorrectCount').textContent = `${correct} / ${totalQ}`;
     document.getElementById('resEarnedScore').textContent = `+${gameState.levelEarnedScore}`;
@@ -1909,16 +1909,16 @@
 
     if (gameState.currentLevelId === 5) {
       celebrationEmoji.textContent = '👑';
-      subTitle.textContent = 'Hebat sekali! Anda telah menamatkan kesemua 5 Tahap Bahasa Arab!';
-      nextBtn.textContent = 'MAIN SEMULA TAHAP INI 🔄';
+      subTitle.textContent = 'Hebat sekali! Anda telah menamatkan kesemua 5 Level Bahasa Arab!';
+      nextBtn.textContent = 'MAIN SEMULA Level INI 🔄';
     } else if (percent >= 50) {
       celebrationEmoji.textContent = '🌟';
-      subTitle.textContent = `Hebat! Tahap ${gameState.currentLevelId + 1} kini telah dibuka untuk anda!`;
-      nextBtn.textContent = `TERUS KE TAHAP ${gameState.currentLevelId + 1} ➔`;
+      subTitle.textContent = `Hebat! Level ${gameState.currentLevelId + 1} kini telah dibuka untuk anda!`;
+      nextBtn.textContent = `TERUS KE Level ${gameState.currentLevelId + 1} ➔`;
     } else {
       celebrationEmoji.textContent = '🎈';
-      subTitle.textContent = 'Teruskan berusaha! Cuba lagi untuk buka tahap seterusnya!';
-      nextBtn.textContent = 'CUBA SEMULA TAHAP INI 🔄';
+      subTitle.textContent = 'Teruskan berusaha! Cuba lagi untuk buka Level seterusnya!';
+      nextBtn.textContent = 'CUBA SEMULA Level INI 🔄';
     }
 
     triggerConfettiBurst(true);
@@ -1991,7 +1991,7 @@
 
     const inputName = document.getElementById('inputPlayerName');
     if (inputName) {
-      inputName.value = gameState.profile.playerName || 'Pemain Cilik';
+      inputName.value = gameState.profile.playerName || ' ';
     }
 
     const btnSaveName = document.getElementById('btnSavePlayerName');
