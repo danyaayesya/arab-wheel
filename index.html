@@ -2,10 +2,10 @@
 <html lang="ms">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Wheel Of Mufradat — Roda Misteri Mufradat Tahun 2</title>
   
-  <!-- Google Fonts: Poppins (Clean Modern Kawaii Latin) & Noto Naskh Arabic (Standard School Arabic) -->
+  <!-- Google Fonts: Poppins (Kawaii Latin) & Noto Naskh Arabic (Standard School Arabic) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -27,9 +27,9 @@
       --yellow-deep: #D98800;
       --sky-soft: #DEF0FF;
       --sky-deep: #3A8FD6;
-      --shadow-kawaii: 0 10px 24px rgba(78, 44, 114, 0.08);
+      --shadow-kawaii: 0 8px 24px rgba(78, 44, 114, 0.08);
       --shadow-button: 0 6px 14px rgba(212, 78, 140, 0.24);
-      --radius-large: 26px;
+      --radius-large: clamp(18px, 4vw, 26px);
       --radius-pill: 999px;
       --font-body: 'Poppins', sans-serif;
       --font-arabic: 'Noto Naskh Arabic', serif;
@@ -40,6 +40,7 @@
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     body {
@@ -53,46 +54,47 @@
       background-image: 
         radial-gradient(#E8DEFF 1.5px, transparent 1.5px),
         radial-gradient(#FFE0EE 1.5px, var(--bg-page) 1.5px);
-      background-size: 36px 36px;
-      background-position: 0 0, 18px 18px;
+      background-size: 32px 32px;
+      background-position: 0 0, 16px 16px;
       overflow-x: hidden;
-      padding-bottom: 30px;
+      padding-bottom: 24px;
     }
 
     .game-wrapper {
       width: 100%;
-      max-width: 650px;
-      padding: 16px 18px;
+      max-width: min(100%, 640px);
+      padding: clamp(10px, 3vw, 18px);
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: clamp(10px, 2.5vw, 16px);
+      margin: 0 auto;
     }
 
-    /* TOP BAR STATS */
     .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: var(--card-bg);
-      padding: 12px 18px;
+      padding: clamp(8px, 2vw, 12px) clamp(10px, 3vw, 18px);
       border-radius: var(--radius-pill);
       box-shadow: var(--shadow-kawaii);
       border: 2px solid var(--lavender-soft);
-      gap: 8px;
+      gap: 6px;
+      flex-wrap: nowrap;
     }
 
     .player-pill {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       background: #FFF5F9;
-      padding: 5px 12px;
+      padding: 4px 10px;
       border-radius: var(--radius-pill);
       border: 1.5px solid var(--pink-soft);
-      font-size: 0.85rem;
+      font-size: clamp(0.75rem, 2.4vw, 0.85rem);
       font-weight: 700;
       color: var(--pink-deep);
-      max-width: 140px;
+      max-width: clamp(90px, 24vw, 140px);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -101,17 +103,17 @@
     .top-stats {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: clamp(4px, 1.5vw, 8px);
     }
 
     .badge-stat {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       background: var(--bg-page);
-      padding: 5px 12px;
+      padding: 4px 10px;
       border-radius: var(--radius-pill);
-      font-size: 0.88rem;
+      font-size: clamp(0.75rem, 2.4vw, 0.88rem);
       font-weight: 700;
       border: 1px solid #ECE4F8;
     }
@@ -123,32 +125,31 @@
       background: #FFF8E6;
       border: 1.5px solid #FFE6A3;
       border-radius: 50%;
-      width: 38px;
-      height: 38px;
+      width: clamp(32px, 8.5vw, 38px);
+      height: clamp(32px, 8.5vw, 38px);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      font-size: clamp(0.95rem, 2.8vw, 1.1rem);
       cursor: pointer;
       box-shadow: 0 3px 8px rgba(0,0,0,0.04);
       transition: transform 0.15s ease;
+      flex-shrink: 0;
     }
 
     .btn-icon:hover { transform: scale(1.08); }
-    .btn-icon:active { transform: scale(0.94); }
+    .btn-icon:active { transform: scale(0.92); }
 
-    /* CARD CONTAINERS */
     .kawaii-card {
       background: var(--card-bg);
       border-radius: var(--radius-large);
-      padding: 24px 20px;
+      padding: clamp(16px, 4vw, 24px) clamp(14px, 3.5vw, 20px);
       box-shadow: var(--shadow-kawaii);
       border: 2px solid var(--lavender-soft);
       text-align: center;
       position: relative;
     }
 
-    /* BUTTON STYLING */
     .btn-kawaii {
       font-family: var(--font-body);
       font-weight: 700;
@@ -166,8 +167,8 @@
     .btn-kawaii-primary {
       background: linear-gradient(135deg, #FF6EA7 0%, #D44E8C 100%);
       color: #FFFFFF;
-      padding: 13px 28px;
-      font-size: 1.05rem;
+      padding: clamp(10px, 3vw, 14px) clamp(20px, 5vw, 32px);
+      font-size: clamp(0.95rem, 2.8vw, 1.1rem);
       box-shadow: var(--shadow-button);
     }
 
@@ -184,21 +185,20 @@
       background: #FFFFFF;
       border: 2px solid var(--lavender-soft);
       color: var(--text-main);
-      padding: 9px 18px;
-      font-size: 0.9rem;
+      padding: clamp(8px, 2vw, 10px) clamp(14px, 3.5vw, 18px);
+      font-size: clamp(0.82rem, 2.4vw, 0.9rem);
     }
 
     .btn-kawaii-secondary:hover {
       background: var(--lavender-soft);
     }
 
-    /* TITLE BANNER */
     .title-banner {
-      margin-bottom: 12px;
+      margin-bottom: clamp(8px, 2vw, 14px);
     }
 
     .title-banner h1 {
-      font-size: 1.65rem;
+      font-size: clamp(1.35rem, 5vw, 1.7rem);
       font-weight: 800;
       color: var(--pink-deep);
       letter-spacing: -0.5px;
@@ -206,27 +206,26 @@
     }
 
     .title-banner h2 {
-      font-size: 1rem;
+      font-size: clamp(0.85rem, 2.8vw, 1.02rem);
       font-weight: 600;
       color: var(--lavender-accent);
       margin-top: 2px;
     }
 
-    /* PLAYER PROFILE BOX */
     .player-input-box {
       background: #FDF9FF;
       border: 1.5px dashed #DACDFC;
-      border-radius: 18px;
-      padding: 14px 16px;
-      margin: 12px 0 18px;
+      border-radius: clamp(14px, 3vw, 18px);
+      padding: clamp(10px, 2.5vw, 14px) clamp(12px, 3vw, 16px);
+      margin: 10px 0 16px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       text-align: left;
     }
 
     .player-input-box label {
-      font-size: 0.85rem;
+      font-size: clamp(0.8rem, 2.5vw, 0.88rem);
       font-weight: 700;
       color: var(--lavender-accent);
     }
@@ -240,25 +239,36 @@
       flex: 1;
       border: 2px solid var(--lavender-soft);
       border-radius: var(--radius-pill);
-      padding: 9px 16px;
-      font-size: 0.92rem;
+      padding: 8px 14px;
+      font-size: clamp(0.85rem, 2.5vw, 0.92rem);
       font-family: var(--font-body);
       color: var(--text-main);
       outline: none;
       background: #FFF;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     .input-row input:focus {
       border-color: var(--pink-deep);
     }
 
-    /* LEVEL SELECTION CARDS */
+    .input-error {
+      border-color: #FF5A79 !important;
+      background-color: #FFF2F5 !important;
+      animation: shakeInput 0.4s ease-in-out;
+    }
+
+    @keyframes shakeInput {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
     .levels-list {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin: 16px 0;
+      margin: 14px 0;
     }
 
     .level-item {
@@ -267,120 +277,112 @@
       justify-content: space-between;
       background: #FFFFFF;
       border: 2px solid #EBE4FA;
-      border-radius: 18px;
-      padding: 12px 16px;
+      border-radius: clamp(14px, 3vw, 18px);
+      padding: clamp(10px, 2.5vw, 14px) clamp(12px, 3vw, 16px);
       cursor: pointer;
       transition: all 0.2s ease;
       text-align: left;
+      gap: 8px;
     }
 
-    .level-item:not(.locked):hover {
+    .level-item:hover {
       transform: translateY(-2px);
       border-color: var(--lavender-accent);
       box-shadow: 0 6px 14px rgba(120, 100, 215, 0.12);
     }
 
-    .level-item.locked {
-      opacity: 0.6;
-      cursor: not-allowed;
-      background: #F6F3FA;
-      border-color: #E2DAED;
+    .level-item:active {
+      transform: scale(0.98);
     }
 
     .level-item-info {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: clamp(8px, 2.5vw, 12px);
+      min-width: 0;
     }
 
     .level-num-badge {
-      width: 42px;
-      height: 42px;
+      width: clamp(34px, 9vw, 42px);
+      height: clamp(34px, 9vw, 42px);
       border-radius: 50%;
-      background: var(--lavender-soft);
-      color: var(--lavender-accent);
+      background: #FFE2F0;
+      color: var(--pink-deep);
       font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.15rem;
-    }
-
-    .level-item.unlocked .level-num-badge {
-      background: #FFE2F0;
-      color: var(--pink-deep);
+      font-size: clamp(1rem, 3vw, 1.15rem);
+      flex-shrink: 0;
     }
 
     .level-name {
       font-weight: 700;
-      font-size: 0.96rem;
+      font-size: clamp(0.85rem, 2.6vw, 0.98rem);
       color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .level-sub {
-      font-size: 0.78rem;
+      font-size: clamp(0.72rem, 2.2vw, 0.8rem);
       color: var(--text-muted);
       margin-top: 1px;
     }
 
     .level-badge-status {
-      font-size: 0.82rem;
+      font-size: clamp(0.75rem, 2.2vw, 0.82rem);
       font-weight: 700;
       padding: 4px 10px;
       border-radius: var(--radius-pill);
-    }
-
-    .level-badge-status.open {
+      white-space: nowrap;
       background: #EAF8F2;
       color: var(--mint-deep);
+      flex-shrink: 0;
     }
 
-    .level-badge-status.lock {
-      background: #EDE6F4;
-      color: #927FA6;
-    }
-
-    /* WHEEL CANVAS SECTION */
     .wheel-container {
       position: relative;
-      width: 290px;
-      height: 290px;
-      margin: 10px auto 14px;
+      width: clamp(210px, 66vw, 290px);
+      height: clamp(210px, 66vw, 290px);
+      margin: 8px auto 14px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     #wheelCanvas {
-      width: 290px;
-      height: 290px;
+      width: 100%;
+      height: 100%;
       filter: drop-shadow(0 8px 16px rgba(78, 44, 114, 0.15));
       border-radius: 50%;
+      display: block;
     }
 
     .wheel-pointer {
       position: absolute;
-      top: -10px;
+      top: -8px;
       left: 50%;
       transform: translateX(-50%);
-      width: 32px;
-      height: 38px;
+      width: clamp(26px, 8vw, 32px);
+      height: clamp(32px, 10vw, 38px);
       z-index: 10;
       filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
     }
 
     .reward-banner-box {
-      min-height: 54px;
+      min-height: 48px;
       background: #FFF5F9;
       border: 2px solid var(--pink-soft);
-      border-radius: 18px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 16px;
+      padding: 6px 14px;
       margin: 8px 0 12px;
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: clamp(0.92rem, 2.8vw, 1.05rem);
       color: var(--pink-deep);
       animation: pulseGlow 2s infinite ease-in-out;
     }
@@ -390,13 +392,12 @@
       50% { border-color: #FFAEC5; box-shadow: 0 4px 12px rgba(212, 78, 140, 0.15); }
     }
 
-    /* QUESTION VIEW */
     .quiz-progress-track {
       background: #EEE9F8;
-      height: 10px;
+      height: 8px;
       border-radius: var(--radius-pill);
       overflow: hidden;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .quiz-progress-bar {
@@ -411,34 +412,34 @@
       display: inline-block;
       background: #EAE6FF;
       color: var(--lavender-accent);
-      padding: 4px 14px;
+      padding: 4px 12px;
       border-radius: var(--radius-pill);
-      font-size: 0.82rem;
+      font-size: clamp(0.75rem, 2.4vw, 0.82rem);
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .quiz-prompt-text {
-      font-size: 0.95rem;
+      font-size: clamp(0.85rem, 2.6vw, 0.95rem);
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .quiz-target-word {
       background: #FFF9F3;
       border: 2px solid #FFE4CD;
-      border-radius: 20px;
-      padding: 16px 20px;
-      margin: 10px 0 18px;
+      border-radius: clamp(14px, 3vw, 20px);
+      padding: clamp(12px, 3vw, 18px);
+      margin: 8px 0 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 85px;
+      min-height: clamp(65px, 15vw, 85px);
     }
 
     .arabic-term {
       font-family: var(--font-arabic);
-      font-size: 2.3rem;
+      font-size: clamp(1.8rem, 6.5vw, 2.3rem);
       font-weight: 700;
       direction: rtl;
       line-height: 1.5;
@@ -447,17 +448,16 @@
     }
 
     .malay-term {
-      font-size: 1.45rem;
+      font-size: clamp(1.2rem, 4.5vw, 1.45rem);
       font-weight: 800;
       color: #331C52;
     }
 
-    /* ANSWER CHOICES */
     .options-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 10px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     @media (min-width: 480px) {
@@ -469,10 +469,10 @@
     .option-btn {
       background: #FFFFFF;
       border: 2px solid #E4DAF5;
-      border-radius: 18px;
-      padding: 14px 16px;
+      border-radius: clamp(14px, 3vw, 18px);
+      padding: clamp(10px, 2.5vw, 14px) clamp(12px, 3vw, 16px);
       font-family: var(--font-body);
-      font-size: 1rem;
+      font-size: clamp(0.88rem, 2.6vw, 1rem);
       font-weight: 700;
       color: var(--text-main);
       cursor: pointer;
@@ -481,12 +481,12 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      min-height: 60px;
+      min-height: clamp(50px, 12vw, 60px);
     }
 
     .option-btn.arabic-choice {
       font-family: var(--font-arabic);
-      font-size: 1.55rem;
+      font-size: clamp(1.3rem, 4.5vw, 1.55rem);
       direction: rtl;
       line-height: 1.4;
     }
@@ -514,13 +514,12 @@
       color: #B5214C !important;
     }
 
-    /* FEEDBACK BANNER */
     .feedback-banner {
-      border-radius: 18px;
-      padding: 14px;
-      margin: 12px 0;
+      border-radius: 16px;
+      padding: 12px;
+      margin: 10px 0;
       font-weight: 700;
-      font-size: 0.98rem;
+      font-size: clamp(0.88rem, 2.6vw, 0.98rem);
       display: none;
       animation: fadeIn 0.3s ease;
     }
@@ -544,39 +543,37 @@
       display: block;
     }
 
-    /* RESULTS SCREEN */
     .results-stats-card {
       background: #FAF7FE;
-      border-radius: 20px;
-      padding: 18px;
+      border-radius: 18px;
+      padding: 16px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 16px 0;
+      gap: 10px;
+      margin: 14px 0;
       text-align: left;
     }
 
     .res-box {
       background: #FFFFFF;
-      border-radius: 14px;
-      padding: 10px 14px;
+      border-radius: 12px;
+      padding: 8px 12px;
       border: 1px solid #ECE4F8;
     }
 
     .res-box-label {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
       font-weight: 600;
     }
 
     .res-box-val {
-      font-size: 1.25rem;
+      font-size: clamp(1.1rem, 3.5vw, 1.25rem);
       font-weight: 800;
       color: var(--text-main);
       margin-top: 2px;
     }
 
-    /* MODAL BASE */
     .kawaii-modal-backdrop {
       position: fixed;
       top: 0;
@@ -604,8 +601,8 @@
       background: #FFFFFF;
       width: 100%;
       max-width: 520px;
-      border-radius: 28px;
-      padding: 24px;
+      border-radius: 24px;
+      padding: clamp(18px, 4vw, 24px);
       box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
       border: 3px solid var(--lavender-soft);
       transform: scale(0.9);
@@ -619,17 +616,16 @@
     }
 
     .modal-title {
-      font-size: 1.35rem;
+      font-size: clamp(1.15rem, 3.5vw, 1.35rem);
       font-weight: 800;
       color: var(--pink-deep);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
-    /* SCOREBOARD TABLE */
     .scoreboard-table-wrap {
-      margin: 14px 0;
+      margin: 12px 0;
       border: 1.5px solid #EBE4FA;
-      border-radius: 16px;
+      border-radius: 14px;
       overflow: hidden;
       max-height: 280px;
       overflow-y: auto;
@@ -638,14 +634,14 @@
     .scoreboard-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.84rem;
+      font-size: clamp(0.76rem, 2.3vw, 0.84rem);
       text-align: left;
     }
 
     .scoreboard-table th {
       background: #F8F5FD;
       color: var(--lavender-accent);
-      padding: 10px 12px;
+      padding: 8px 10px;
       font-weight: 700;
       border-bottom: 1.5px solid #EBE4FA;
       position: sticky;
@@ -654,9 +650,10 @@
     }
 
     .scoreboard-table td {
-      padding: 10px 12px;
+      padding: 8px 10px;
       border-bottom: 1px solid #F1ECFA;
       color: var(--text-main);
+      vertical-align: middle;
     }
 
     .scoreboard-table tr:last-child td {
@@ -675,15 +672,25 @@
       font-style: italic;
     }
 
-    /* TOAST MESSAGE */
+    .lvl-tag-pill {
+      display: inline-block;
+      font-size: 0.72rem;
+      background: #EAE6FF;
+      color: var(--lavender-accent);
+      padding: 2px 7px;
+      border-radius: 8px;
+      font-weight: 700;
+      margin: 1px;
+    }
+
     .toast-pill {
       position: fixed;
       bottom: 24px;
       background: #2C1F42;
       color: #FFF;
-      padding: 10px 22px;
+      padding: 8px 20px;
       border-radius: var(--radius-pill);
-      font-size: 0.88rem;
+      font-size: clamp(0.8rem, 2.4vw, 0.88rem);
       font-weight: 600;
       box-shadow: 0 8px 20px rgba(0,0,0,0.25);
       z-index: 2000;
@@ -698,7 +705,6 @@
       transform: translateY(0);
     }
 
-    /* CONFETTI CANVAS */
     #confettiCanvas {
       position: fixed;
       top: 0;
@@ -712,123 +718,33 @@
     .hidden {
       display: none !important;
     }
-    /* RESPONSIVE LAYOUT ENHANCEMENTS */
-    @media (max-width: 420px) {
-      .game-wrapper {
-        padding: 10px 12px;
-        gap: 12px;
-      }
-      .title-banner h1 {
-        font-size: 1.35rem;
-      }
-      .title-banner h2 {
-        font-size: 0.88rem;
-      }
-      .top-bar {
-        padding: 8px 12px;
-      }
-      .player-pill {
-        max-width: 110px;
-        font-size: 0.78rem;
-        padding: 4px 8px;
-      }
-      .badge-stat {
-        padding: 4px 8px;
-        font-size: 0.8rem;
-      }
-      .btn-icon {
-        width: 32px;
-        height: 32px;
-        font-size: 0.95rem;
-      }
-      .wheel-container {
-        width: 260px;
-        height: 260px;
-      }
-      #wheelCanvas {
-        width: 260px;
-        height: 260px;
-      }
-      .arabic-term {
-        font-size: 1.95rem;
-      }
-      .malay-term {
-        font-size: 1.25rem;
-      }
-      .option-btn {
-        min-height: 52px;
-        padding: 10px 12px;
-        font-size: 0.92rem;
-      }
-      .option-btn.arabic-choice {
-        font-size: 1.35rem;
-      }
-    }
 
-    /* WATERMARK / FOOTER CREDIT */
     .game-watermark-footer {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-      margin-bottom: 8px;
-      padding: 8px 20px;
+      gap: 6px;
+      margin-top: 14px;
+      padding: 6px 16px;
       background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(8px);
       border: 1.5px solid var(--lavender-soft);
       border-radius: var(--radius-pill);
       box-shadow: 0 4px 16px rgba(78, 44, 114, 0.06);
       width: fit-content;
-      max-width: 92%;
       margin-left: auto;
       margin-right: auto;
       user-select: none;
-      transition: all 0.25s ease;
-    }
-
-    .game-watermark-footer:hover {
-      transform: translateY(-2px);
-      border-color: #DACDFC;
-      box-shadow: 0 6px 20px rgba(78, 44, 114, 0.1);
     }
 
     .watermark-text {
-      font-size: 0.95rem;
-      font-weight: 800;
+      font-size: clamp(0.8rem, 2.4vw, 0.88rem);
+      font-weight: 700;
       color: var(--text-muted);
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
     }
 
-    .watermark-logo-box {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 0;
-    }
-
-    .watermark-logo-img {
-      height: 48px;
-      width: auto;
-      max-width: 170px;
-      object-fit: contain;
-      display: block;
-    }
-
-    @media (max-width: 420px) {
-      .game-watermark-footer {
-        padding: 6px 16px;
-        margin-top: 16px;
-      }
-      .watermark-text {
-        font-size: 0.85rem;
-      }
-      .watermark-logo-img {
-        height: 40px;
-        max-width: 140px;
-      }
+    .watermark-handle {
+      color: var(--pink-deep);
     }
   </style>
 </head>
@@ -845,7 +761,7 @@
       </div>
 
       <div class="top-stats">
-        <div class="badge-stat score" title="Jumlah Skor">
+        <div class="badge-stat score" title="Jumlah Keseluruhan Mata Terkumpul">
           <span>🏆</span>
           <span id="topScoreDisplay">0</span>
         </div>
@@ -855,7 +771,7 @@
         </div>
       </div>
 
-      <div style="display:flex; gap:6px;">
+      <div style="display:flex; gap: clamp(4px, 1.5vw, 6px);">
         <button class="btn-icon" id="btnHomeTop" title="Menu Utama">🏠</button>
         <button class="btn-icon" id="btnHowToPlayTop" title="Cara Bermain">❓</button>
         <button class="btn-icon" id="btnOpenScoreboard" title="Papan Skor">🏆</button>
@@ -866,7 +782,7 @@
     <!-- SCREEN 1: MAIN MENU -->
     <main id="screenMainMenu" class="kawaii-card">
       <div class="title-banner">
-        <div style="font-size: 2.2rem; margin-bottom: 2px;">🎡</div>
+        <div style="font-size: clamp(1.8rem, 5vw, 2.2rem); margin-bottom: 2px;">🎡</div>
         <h1>WHEEL OF MUFRADAT</h1>
         <h2>Roda Misteri Mufradat Tahun 2</h2>
       </div>
@@ -881,8 +797,8 @@
       </section>
 
       <!-- MENU ACTIONS -->
-      <div style="margin: 8px 0 14px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
-        <button class="btn-kawaii btn-kawaii-primary" id="btnStartGame" style="padding: 14px 34px; font-size: 1.15rem;">
+      <div style="margin: 6px 0 12px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+        <button class="btn-kawaii btn-kawaii-primary" id="btnStartGame">
           ✨ MULA MAIN ✨
         </button>
         <button class="btn-kawaii btn-kawaii-secondary" id="btnOpenHowToPlay">
@@ -890,21 +806,21 @@
         </button>
       </div>
 
-      <!-- LEVEL SELECTION LIST -->
+      <!-- LEVEL SELECTION LIST (ALL 5 UNLOCKED) -->
       <section>
-        <div style="font-weight:700; font-size:0.95rem; color:var(--lavender-accent); text-align:left; margin-bottom: 8px;">
-          Pilih Level (5 Level / 100 Soalan):
+        <div style="font-weight:700; font-size: clamp(0.85rem, 2.5vw, 0.95rem); color:var(--lavender-accent); text-align:left; margin-bottom: 6px;">
+          Pilih Mana-Mana Level (5 Level / 100 Soalan):
         </div>
         <div class="levels-list" id="levelsContainer">
-          <!-- Dynamically injected via JavaScript -->
+          <!-- Dynamically populated via JS -->
         </div>
       </section>
 
-      <div style="margin-top: 14px; display:flex; justify-content:space-between; align-items:center;">
-        <button class="btn-kawaii btn-kawaii-secondary" id="btnResetProgress" style="font-size:0.78rem; padding: 6px 12px; color: #AC3052;">
+      <div style="margin-top: 10px; display:flex; justify-content:space-between; align-items:center;">
+        <button class="btn-kawaii btn-kawaii-secondary" id="btnResetProgress" style="font-size:0.75rem; padding: 5px 10px; color: #AC3052;">
           🔄 Set Semula Kemajuan
         </button>
-        <span style="font-size:0.75rem; color:var(--text-muted);">Tahun 2 KSSR</span>
+        <span style="font-size:0.72rem; color:var(--text-muted);">Tahun 2 KSSR</span>
       </div>
     </main>
 
@@ -912,19 +828,17 @@
     <section id="screenWheel" class="kawaii-card hidden">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
         <span class="quiz-sub-badge" id="wheelLevelTitle">Level 1 — Dunia Sekolah</span>
-        <span style="font-weight: 700; font-size: 0.85rem; color: var(--lavender-accent);" id="wheelProgressLabel">Soalan 1 / 20</span>
+        <span style="font-weight: 700; font-size: 0.82rem; color: var(--lavender-accent);" id="wheelProgressLabel">Soalan 1 / 20</span>
       </div>
 
-      <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-top: 4px;">
+      <h3 style="font-size: clamp(1.1rem, 3.5vw, 1.25rem); font-weight: 800; color: var(--text-main); margin-top: 2px;">
         Pusing Roda Rezeki!
       </h3>
-      <p style="font-size: 0.84rem; color: var(--text-muted);">
+      <p style="font-size: 0.82rem; color: var(--text-muted);">
         Ketik butang pusing untuk tentukan ganjaran soalan ini.
       </p>
 
-      <!-- WHEEL CANVAS -->
-      <div class="wheel-container">
-        <!-- Pointer SVG -->
+      <div class="wheel-container" id="wheelContainerBox">
         <svg class="wheel-pointer" viewBox="0 0 40 46" fill="none">
           <path d="M20 46L6 14C3 8 7 0 14 0H26C33 0 37 8 34 14L20 46Z" fill="#D44E8C"/>
           <path d="M20 38L10 14C8 10 11 4 16 4H24C29 4 32 10 30 14L20 38Z" fill="#FFAEC5"/>
@@ -937,7 +851,7 @@
         🎯 Tekan PUSING RODA untuk mula!
       </div>
 
-      <button class="btn-kawaii btn-kawaii-primary" id="btnSpinWheel" style="width: 100%; max-width: 280px; padding: 14px 20px; font-size: 1.15rem;">
+      <button class="btn-kawaii btn-kawaii-primary" id="btnSpinWheel" style="width: 100%; max-width: 280px;">
         🎡 PUSING RODA!
       </button>
     </section>
@@ -950,25 +864,21 @@
 
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <span class="quiz-sub-badge" id="quizLevelBadge">Level 1</span>
-        <span style="font-size: 0.82rem; font-weight: 700; color: var(--pink-deep);" id="quizRewardActiveTag">🏆 100 Mata</span>
+        <span style="font-size: 0.8rem; font-weight: 700; color: var(--pink-deep);" id="quizRewardActiveTag">🏆 100 Mata</span>
       </div>
 
       <div class="quiz-prompt-text" id="quizInstructionText">Pilih maksud yang betul:</div>
 
-      <!-- TARGET VOCABULARY CARD -->
       <div class="quiz-target-word">
         <div id="targetWordContainer"></div>
       </div>
 
-      <!-- 4 MULTIPLE CHOICE OPTIONS (ZERO-HINT) -->
       <div class="options-grid" id="optionsGrid">
-        <!-- 4 buttons populated by JS -->
+        <!-- Multiple-choice options -->
       </div>
 
-      <!-- FEEDBACK BANNER (Revealed AFTER submission) -->
       <div class="feedback-banner" id="qFeedbackBanner"></div>
 
-      <!-- NEXT BUTTON (Visible AFTER submission) -->
       <div style="margin-top: 10px;">
         <button class="btn-kawaii btn-kawaii-primary hidden" id="btnNextQuestion" style="width: 100%; max-width: 280px; padding: 12px 24px;">
           SOALAN SETERUSNYA ➔
@@ -976,11 +886,11 @@
       </div>
     </section>
 
-    <!-- SCREEN 4: RESULTS & COMPLETION -->
+    <!-- SCREEN 4: RESULTS SCREEN -->
     <section id="screenResults" class="kawaii-card hidden">
-      <div style="font-size: 3rem; margin-bottom: 2px;" id="resultCelebrationEmoji">🎉</div>
-      <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--pink-deep);" id="resultsTitle">TAHNIAH!</h2>
-      <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2px;" id="resultsSubtitle">
+      <div style="font-size: 2.8rem; margin-bottom: 2px;" id="resultCelebrationEmoji">🎉</div>
+      <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--pink-deep);" id="resultsTitle">TAHNIAH!</h2>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 2px;" id="resultsSubtitle">
         Anda telah melengkapkan pusingan ini!
       </p>
 
@@ -1003,9 +913,9 @@
         </div>
       </div>
 
-      <div style="display:flex; flex-direction:column; gap:10px; align-items:center; margin-top: 14px;">
+      <div style="display:flex; flex-direction:column; gap:8px; align-items:center; margin-top: 12px;">
         <button class="btn-kawaii btn-kawaii-primary" id="btnNextLevelOrReplay" style="width:100%; max-width: 280px;">
-          Level SETERUSNYA ➔
+          TERUS KE LEVEL SETERUSNYA ➔
         </button>
         <button class="btn-kawaii btn-kawaii-secondary" id="btnBackToHomeFromResults" style="width:100%; max-width: 280px;">
           🏠 Menu Utama
@@ -1022,20 +932,20 @@
   <!-- MODAL: SCOREBOARD / PAPAN SKOR -->
   <div class="kawaii-modal-backdrop" id="modalScoreboard">
     <div class="kawaii-modal">
-      <div style="font-size: 2.2rem; margin-bottom: 4px; text-align: center;">🏆</div>
-      <h3 class="modal-title" style="text-align: center;">Papan Skor Masa-Nyata</h3>
-      <p style="font-size: 0.85rem; color: #76648D; margin-bottom: 8px; text-align: center;">
-        Markah dikemas kini secara automatik setiap kali murid menjawab soalan!
+      <div style="font-size: 2rem; margin-bottom: 2px; text-align: center;">🏆</div>
+      <h3 class="modal-title" style="text-align: center;">Papan Skor Terkumpul</h3>
+      <p style="font-size: 0.82rem; color: #76648D; margin-bottom: 8px; text-align: center;">
+        Mata auto-masuk dan dijumlahkan terus bagi setiap level yang dimainkan!
       </p>
 
       <div class="scoreboard-table-wrap">
         <table class="scoreboard-table">
           <thead>
             <tr>
-              <th style="width: 14%;">#</th>
-              <th style="width: 46%;">Nama & Status</th>
-              <th style="width: 20%;">Level</th>
-              <th style="width: 20%; text-align: right;">Mata</th>
+              <th style="width: 12%;">#</th>
+              <th style="width: 36%;">Nama & Bintang</th>
+              <th style="width: 26%;">Level Disertai</th>
+              <th style="width: 26%; text-align: right;">Jumlah Mata</th>
             </tr>
           </thead>
           <tbody id="scoreboardTableBody">
@@ -1044,11 +954,11 @@
         </table>
       </div>
 
-      <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-        <button class="btn-kawaii btn-kawaii-secondary" id="btnClearScoreboard" style="padding: 8px 16px; font-size: 0.85rem; color: #C2335A; border-color: #FFAEC5;">
+      <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <button class="btn-kawaii btn-kawaii-secondary" id="btnClearScoreboard" style="padding: 6px 14px; font-size: 0.82rem; color: #C2335A; border-color: #FFAEC5;">
           🗑️ Padam Skor
         </button>
-        <button class="btn-kawaii btn-kawaii-primary" id="btnCloseScoreboardModal" style="padding: 10px 24px; font-size: 0.95rem;">
+        <button class="btn-kawaii btn-kawaii-primary" id="btnCloseScoreboardModal" style="padding: 8px 20px; font-size: 0.92rem;">
           TUTUP
         </button>
       </div>
@@ -1058,27 +968,23 @@
   <!-- MODAL: CARA MAIN -->
   <div class="kawaii-modal-backdrop" id="modalHowToPlay">
     <div class="kawaii-modal">
-      <div style="font-size: 2.2rem; margin-bottom: 4px; text-align: center;">📖</div>
+      <div style="font-size: 2rem; margin-bottom: 2px; text-align: center;">📖</div>
       <h3 class="modal-title" style="text-align: center;">Cara Bermain</h3>
       
-      <div style="font-size: 0.88rem; line-height: 1.6; color: var(--text-main); text-align: left; margin: 12px 0;">
-        <p style="margin-bottom: 8px;"><strong>1. Tulis Nama:</strong> Masukkan nama murid supaya markah dicatat dalam papan skor.</p>
-        <p style="margin-bottom: 8px;"><strong>2. Pusing Roda:</strong> Setiap soalan dimulakan dengan putaran roda hadiah untuk menentukan mata ganjaran (100–350 mata atau bintang bonus!).</p>
-        <p style="margin-bottom: 8px;"><strong>3. Sifar Petunjuk:</strong> Pilih satu jawapan yang betul tanpa bantuan petunjuk. Selepas menjawab, jawapan sebenar akan disemak.</p>
-        <p style="margin-bottom: 8px;"><strong>4. 5 Level Pembelajaran:</strong> Lengkapkan 20 soalan dalam setiap Level untuk membuka Level seterusnya.</p>
+      <div style="font-size: clamp(0.8rem, 2.5vw, 0.88rem); line-height: 1.55; color: var(--text-main); text-align: left; margin: 10px 0;">
+        <p style="margin-bottom: 6px;"><strong>1. Tulis Nama:</strong> Masukkan nama murid supaya markah dicatat dalam papan skor.</p>
+        <p style="margin-bottom: 6px;"><strong>2. Pusing Roda:</strong> Setiap soalan dimulakan dengan putaran roda hadiah untuk menentukan mata ganjaran (100–350 mata atau bintang bonus!).</p>
+        <p style="margin-bottom: 6px;"><strong>3. Sifar Petunjuk:</strong> Pilih satu jawapan yang betul tanpa bantuan petunjuk. Selepas menjawab, jawapan sebenar akan disemak.</p>
+        <p style="margin-bottom: 6px;"><strong>4. 5 Level Bebas:</strong> Semua 5 Level terbuka terus! Murid boleh memilih mana-mana topik untuk latihan pada bila-bila masa.</p>
       </div>
 
-      <div style="text-align: center; margin-top: 16px;">
+      <div style="text-align: center; margin-top: 14px;">
         <button class="btn-kawaii btn-kawaii-primary" id="btnCloseHowToPlay">Faham!</button>
       </div>
     </div>
   </div>
 
   <script>
-  /**
-   * PURE WEB AUDIO API SYNTHESIZER
-   * Produces cheerful, gentle kawaii tones without any external audio dependencies.
-   */
   const KawaiiAudio = (function() {
     let ctx = null;
     let enabled = true;
@@ -1086,9 +992,7 @@
     function initCtx() {
       if (!ctx) {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (AudioCtx) {
-          ctx = new AudioCtx();
-        }
+        if (AudioCtx) ctx = new AudioCtx();
       }
       if (ctx && ctx.state === 'suspended') {
         ctx.resume();
@@ -1096,12 +1000,8 @@
     }
 
     return {
-      toggle(on) {
-        enabled = on;
-      },
-      isEnabled() {
-        return enabled;
-      },
+      toggle(on) { enabled = on; },
+      isEnabled() { return enabled; },
       click() {
         if (!enabled) return;
         initCtx();
@@ -1143,7 +1043,7 @@
         if (!ctx) return;
         try {
           const now = ctx.currentTime;
-          const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6 arpeggio
+          const notes = [523.25, 659.25, 783.99, 1046.50];
           notes.forEach((freq, idx) => {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
@@ -1167,7 +1067,7 @@
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
           osc.type = 'sawtooth';
-          osc.frequency.setValueAtTime(329.63, now); // E4 down to C4 gentle descending tone
+          osc.frequency.setValueAtTime(329.63, now);
           osc.frequency.exponentialRampToValueAtTime(261.63, now + 0.25);
           gain.gain.setValueAtTime(0.12, now);
           gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
@@ -1210,7 +1110,7 @@
       } catch (e) {}
       return {
         playerName: '',
-        unlockedLevel: 1,
+        unlockedLevel: 5,
         totalScore: 0,
         totalStars: 0,
         levelScores: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
@@ -1225,7 +1125,10 @@
     getScoreboard() {
       try {
         const raw = localStorage.getItem(this.SCOREBOARD_KEY);
-        if (raw) return JSON.parse(raw);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) return parsed;
+        }
       } catch (e) {}
       return [];
     },
@@ -1234,17 +1137,85 @@
         localStorage.setItem(this.SCOREBOARD_KEY, JSON.stringify(list));
       } catch (e) {}
     },
-    syncRealtimeScore(sessionData) {
+    getPlayerStats(name) {
+      const cleanName = (name || '').trim().toLowerCase();
+      if (!cleanName) {
+        return {
+          totalScore: 0,
+          totalStars: 0,
+          levelScores: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
+        };
+      }
       const list = this.getScoreboard();
-      const existingIdx = list.findIndex(item => item.sessionId === sessionData.sessionId);
+      const entry = list.find(item => (item.name || '').trim().toLowerCase() === cleanName);
+      if (entry) {
+        const levelScores = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+        if (entry.levels && typeof entry.levels === 'object') {
+          for (let i = 1; i <= 5; i++) {
+            levelScores[i] = Number(entry.levels[i] || 0);
+          }
+        }
+        return {
+          totalScore: Number(entry.totalScore || 0),
+          totalStars: Number(entry.stars || 0),
+          levelScores: levelScores
+        };
+      }
+      return {
+        totalScore: 0,
+        totalStars: 0,
+        levelScores: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
+      };
+    },
+    // Instant cumulative update by Player Name
+    syncRealtimeScore({ name, levelId, levelScore, levelStars }) {
+      const cleanName = (name || '').trim();
+      if (!cleanName) return [];
+
+      const list = this.getScoreboard();
+      const nameKey = cleanName.toLowerCase();
       
-      if (existingIdx !== -1) {
-        list[existingIdx] = { ...list[existingIdx], ...sessionData };
+      let entryIndex = list.findIndex(item => (item.name || '').trim().toLowerCase() === nameKey);
+      let entry;
+
+      if (entryIndex !== -1) {
+        entry = list[entryIndex];
       } else {
-        list.push(sessionData);
+        entry = {
+          name: cleanName,
+          levels: {},
+          stars: 0,
+          totalScore: 0
+        };
+        list.push(entry);
       }
 
-      list.sort((a, b) => b.score - a.score);
+      // Ensure objects exist
+      if (!entry.levels || typeof entry.levels !== 'object') {
+        entry.levels = {};
+      }
+
+      // Keep player display casing updated
+      entry.name = cleanName;
+
+      // Update score for the current level (take maximum score earned in this level)
+      const currentLevelScore = Number(entry.levels[levelId] || 0);
+      const incomingLevelScore = Number(levelScore || 0);
+      entry.levels[levelId] = Math.max(currentLevelScore, incomingLevelScore);
+
+      // Sum scores across ALL levels played by this player
+      let calculatedTotal = 0;
+      Object.keys(entry.levels).forEach(lvl => {
+        calculatedTotal += Number(entry.levels[lvl] || 0);
+      });
+
+      entry.totalScore = calculatedTotal;
+      entry.stars = Math.max(Number(entry.stars || 0), Number(levelStars || 0));
+      entry.lastUpdated = Date.now();
+
+      // Sort by grand total score descending
+      list.sort((a, b) => Number(b.totalScore || 0) - Number(a.totalScore || 0));
+
       const trimmed = list.slice(0, 30);
       this.saveScoreboard(trimmed);
       return trimmed;
@@ -1263,9 +1234,6 @@
     }
   };
 
-  /**
-   * 10 SEGMENTS WITH BALANCED REWARDS:
-   */
   const WHEEL_SEGMENTS = [
     { label: '100 Mata', type: 'POINTS', value: 100, color: '#FFD9E8', textColor: '#A82B61' },
     { label: '200 Mata', type: 'POINTS', value: 200, color: '#DCD5FF', textColor: '#4F39A8' },
@@ -1279,10 +1247,6 @@
     { label: 'Cabaran Hebat', type: 'CHALLENGE_ROUND', value: 350, color: '#D8EDFF', textColor: '#1B65A8' }
   ];
 
-  /**
-   * 100 VOCABULARY ITEMS STRICTLY STRUCTURED INTO 5 SYLLABUS LEVELS
-   * (20 questions per level, complete with harakat)
-   */
   const VOCABULARY_BANK = {
     1: {
       name: "Dunia Sekolah",
@@ -1421,8 +1385,7 @@
     levelEarnedScore: 0,
     levelEarnedStars: 0,
     isSpinning: false,
-    hasAnsweredQuestion: false,
-    currentSessionId: null
+    hasAnsweredQuestion: false
   };
 
   const canvas = document.getElementById('wheelCanvas');
@@ -1440,8 +1403,8 @@
 
   function updateTopBar() {
     document.getElementById('topPlayerNameDisplay').textContent = gameState.profile.playerName || '';
-    document.getElementById('topScoreDisplay').textContent = gameState.profile.totalScore.toLocaleString();
-    document.getElementById('topStarsDisplay').textContent = gameState.profile.totalStars;
+    document.getElementById('topScoreDisplay').textContent = Number(gameState.profile.totalScore || 0).toLocaleString();
+    document.getElementById('topStarsDisplay').textContent = gameState.profile.totalStars || 0;
     document.getElementById('btnToggleSound').textContent = gameState.profile.soundEnabled ? '🔊' : '🔇';
   }
 
@@ -1452,7 +1415,7 @@
     if (!nameVal || nameVal === '') {
       if (input) {
         input.classList.remove('input-error');
-        void input.offsetWidth; // Force CSS reflow to re-trigger shake animation
+        void input.offsetWidth;
         input.classList.add('input-error');
         input.focus();
       }
@@ -1465,8 +1428,13 @@
       input.classList.remove('input-error');
     }
     gameState.profile.playerName = nameVal;
+    const stats = GameStorage.getPlayerStats(nameVal);
+    gameState.profile.levelScores = { ...stats.levelScores };
+    gameState.profile.totalStars = stats.totalStars;
+    gameState.profile.totalScore = stats.totalScore;
     GameStorage.saveData(gameState.profile);
     updateTopBar();
+    renderLevelCards();
     return true;
   }
 
@@ -1486,7 +1454,7 @@
     const records = GameStorage.getScoreboard();
 
     if (!records || records.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="4" class="scoreboard-empty-msg">Belum ada rekod skor. Main sekarang dan markah akan dipaparkan terus secara automatik!</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="4" class="scoreboard-empty-msg">Belum ada rekod. Main sekarang dan jumlah markah terkumpul anda akan terus dipaparkan di sini!</td></tr>`;
       return;
     }
 
@@ -1499,39 +1467,51 @@
       else if (idx === 1) medal = '🥈 2';
       else if (idx === 2) medal = '🥉 3';
 
-      const statusTag = rec.isCompleted 
-        ? `<span style="font-size:0.75rem; color:#2CA581; background:#E5FAF2; padding:2px 8px; border-radius:10px; font-weight:700;">✓ Selesai</span>` 
-        : `<span style="font-size:0.75rem; color:#D44E8C; background:#FFF0F6; padding:2px 8px; border-radius:10px; font-weight:700;">⏳ Soalan ${rec.currentQ || 1}/20</span>`;
+      // Build levels pill list: e.g. "L1 (100m)", "L2 (200m)"
+      const levelsObj = rec.levels || {};
+      const playedLevels = Object.keys(levelsObj).sort((a, b) => Number(a) - Number(b));
+      let levelsHtml = '—';
+
+      if (playedLevels.length > 0) {
+        levelsHtml = playedLevels.map(lvl => {
+          const scoreForLvl = Number(levelsObj[lvl] || 0);
+          return `<span class="lvl-tag-pill">L${lvl}: ${scoreForLvl.toLocaleString()}m</span>`;
+        }).join(' ');
+      }
+
+      // Explicitly compute or fallback to total score number
+      let displayTotal = Number(rec.totalScore);
+      if (isNaN(displayTotal) || displayTotal === 0) {
+        let fallbackSum = 0;
+        playedLevels.forEach(lvl => { fallbackSum += Number(levelsObj[lvl] || 0); });
+        displayTotal = fallbackSum || Number(rec.score || 0);
+      }
 
       tr.innerHTML = `
-        <td>${medal}</td>
+        <td style="font-weight:700;">${medal}</td>
         <td>
-          <div style="font-weight:700;">${escapeHtml(rec.name)}</div>
-          <div>${statusTag}</div>
+          <div style="font-weight:700; color:var(--text-main); font-size: clamp(0.82rem, 2.5vw, 0.92rem);">${escapeHtml(rec.name)}</div>
+          <div style="font-size: 0.72rem; color: var(--text-muted);">⭐ ${Number(rec.stars || 0)} bintang</div>
         </td>
-        <td>${escapeHtml(rec.level)}</td>
-        <td style="text-align: right; color:#D44E8C; font-weight:700;">${rec.score} ⭐</td>
+        <td>${levelsHtml}</td>
+        <td style="text-align: right; color:#D44E8C; font-weight:800; font-size: clamp(0.92rem, 2.7vw, 1.1rem); white-space: nowrap;">
+          ${displayTotal.toLocaleString()} Mata
+        </td>
       `;
       tbody.appendChild(tr);
     });
   }
 
-  function updateLiveScoreboardEntry(isFinished = false) {
-    const activePlayerName = gameState.profile.playerName || '';
-    const totalQ = gameState.levelQuestions.length || 20;
-    const answeredCount = gameState.currentQuestionIndex + (gameState.hasAnsweredQuestion ? 1 : 0);
-    const accuracy = answeredCount > 0 ? Math.round((gameState.levelCorrectCount / answeredCount) * 100) + '%' : '0%';
+  function updateLiveScoreboardEntry() {
+    const activePlayerName = (gameState.profile.playerName || '').trim();
+    if (!activePlayerName) return;
 
+    // Immediately sync cumulative scores to scoreboard
     GameStorage.syncRealtimeScore({
-      sessionId: gameState.currentSessionId,
       name: activePlayerName,
-      level: `Level ${gameState.currentLevelId}`,
-      score: gameState.levelEarnedScore,
-      stars: gameState.levelEarnedStars,
-      currentQ: Math.min(answeredCount, totalQ),
-      accuracy: accuracy,
-      isCompleted: isFinished,
-      timestamp: Date.now()
+      levelId: gameState.currentLevelId,
+      levelScore: gameState.levelEarnedScore,
+      levelStars: gameState.profile.totalStars
     });
   }
 
@@ -1540,12 +1520,11 @@
     container.innerHTML = '';
 
     for (let id = 1; id <= 5; id++) {
-      const isUnlocked = id <= gameState.profile.unlockedLevel;
       const lvlData = VOCABULARY_BANK[id];
       const bestScore = gameState.profile.levelScores[id] || 0;
 
       const item = document.createElement('div');
-      item.className = `level-item ${isUnlocked ? 'unlocked' : 'locked'}`;
+      item.className = 'level-item';
 
       item.innerHTML = `
         <div class="level-item-info">
@@ -1555,18 +1534,16 @@
             <div class="level-sub">20 Soalan Mufradat ${bestScore > 0 ? `• Rekod: ${bestScore} mata` : ''}</div>
           </div>
         </div>
-        <div class="level-badge-status ${isUnlocked ? 'open' : 'lock'}">
-          ${isUnlocked ? 'Terbuka' : 'Terkunci 🔒'}
+        <div class="level-badge-status">
+          Terbuka
         </div>
       `;
 
-      if (isUnlocked) {
-        item.addEventListener('click', () => {
-          if (!validatePlayerNameBeforeStart()) return;
-          KawaiiAudio.click();
-          startLevel(id);
-        });
-      }
+      item.addEventListener('click', () => {
+        if (!validatePlayerNameBeforeStart()) return;
+        KawaiiAudio.click();
+        startLevel(id);
+      });
 
       container.appendChild(item);
     }
@@ -1583,6 +1560,13 @@
       }
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (screenId === 'screenWheel') {
+      setTimeout(() => {
+        setupResponsiveCanvas();
+        drawWheel(wheelAngle);
+      }, 50);
+    }
   }
 
   function buildQuestionsForLevel(levelId) {
@@ -1614,14 +1598,36 @@
     });
   }
 
+  function setupResponsiveCanvas() {
+    const container = document.getElementById('wheelContainerBox');
+    if (!container) return;
+
+    const rect = container.getBoundingClientRect();
+    const renderWidth = rect.width > 0 ? rect.width : 280;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    canvas.width = Math.round(renderWidth * dpr);
+    canvas.height = Math.round(renderWidth * dpr);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(dpr, dpr);
+  }
+
   function drawWheel(angle) {
+    const container = document.getElementById('wheelContainerBox');
+    let renderSize = 280;
+    if (container) {
+      const rect = container.getBoundingClientRect();
+      if (rect.width > 0) renderSize = rect.width;
+    }
+
+    const centerX = renderSize / 2;
+    const centerY = renderSize / 2;
+    const radius = Math.max(10, centerX - 6);
+
+    ctx.clearRect(0, 0, renderSize, renderSize);
+
     const numSegments = WHEEL_SEGMENTS.length;
     const arcSize = (2 * Math.PI) / numSegments;
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = centerX - 6;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < numSegments; i++) {
       const segAngle = angle + i * arcSize;
@@ -1634,7 +1640,7 @@
       ctx.lineTo(centerX, centerY);
       ctx.fill();
 
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 2.5;
       ctx.strokeStyle = '#FFFFFF';
       ctx.stroke();
 
@@ -1643,21 +1649,23 @@
       ctx.rotate(segAngle + arcSize / 2);
       ctx.textAlign = 'right';
       ctx.fillStyle = seg.textColor;
-      ctx.font = 'bold 12.5px Poppins, sans-serif';
-      ctx.fillText(seg.label, radius - 16, 5);
+      const fontSize = Math.max(10, Math.round(renderSize * 0.044));
+      ctx.font = `bold ${fontSize}px Poppins, sans-serif`;
+      ctx.fillText(seg.label, radius - 14, fontSize * 0.35);
       ctx.restore();
     }
 
+    const centerRadius = Math.max(14, Math.round(renderSize * 0.11));
     ctx.beginPath();
-    ctx.arc(centerX, centerY, 32, 0, 2 * Math.PI);
+    ctx.arc(centerX, centerY, centerRadius, 0, 2 * Math.PI);
     ctx.fillStyle = '#FFFFFF';
     ctx.fill();
-    ctx.lineWidth = 4;
+    ctx.lineWidth = 3.5;
     ctx.strokeStyle = '#DCD5FF';
     ctx.stroke();
 
     ctx.fillStyle = '#D44E8C';
-    ctx.font = 'bold 18px Poppins';
+    ctx.font = `bold ${Math.round(centerRadius * 0.9)}px Poppins`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText('⭐', centerX, centerY);
@@ -1671,9 +1679,8 @@
     gameState.levelEarnedScore = 0;
     gameState.levelEarnedStars = 0;
     gameState.hasAnsweredQuestion = false;
-    gameState.currentSessionId = 'sess_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
 
-    updateLiveScoreboardEntry(false);
+    updateLiveScoreboardEntry();
     prepareWheelStage();
   }
 
@@ -1686,7 +1693,6 @@
     document.getElementById('btnSpinWheel').style.opacity = '1';
 
     showScreen('screenWheel');
-    drawWheel(wheelAngle);
   }
 
   function spinWheel() {
@@ -1845,8 +1851,18 @@
 
       gameState.profile.totalScore += pointsAwarded;
       gameState.profile.totalStars += starsAwarded;
+      
+      // Update best score for this level in profile
+      const oldBest = gameState.profile.levelScores[gameState.currentLevelId] || 0;
+      if (gameState.levelEarnedScore > oldBest) {
+        gameState.profile.levelScores[gameState.currentLevelId] = gameState.levelEarnedScore;
+      }
+
       GameStorage.saveData(gameState.profile);
       updateTopBar();
+
+      // AUTO-SYNC TO SCOREBOARD IMMEDIATELY AS SOON AS POINTS ARE GAINED
+      updateLiveScoreboardEntry();
 
       selectedBtn.classList.add('state-correct');
       KawaiiAudio.correct();
@@ -1861,9 +1877,10 @@
           btn.classList.add('state-correct');
         }
       });
-    }
 
-    updateLiveScoreboardEntry(false);
+      // Keep scoreboard updated with current progress
+      updateLiveScoreboardEntry();
+    }
 
     const feedbackBanner = document.getElementById('qFeedbackBanner');
     if (isCorrect) {
@@ -1908,15 +1925,18 @@
       gameState.profile.totalStars += 1;
     }
 
-    if (gameState.currentLevelId === gameState.profile.unlockedLevel && gameState.profile.unlockedLevel < 5) {
-      gameState.profile.unlockedLevel++;
-    }
-
     if ((gameState.profile.levelScores[gameState.currentLevelId] || 0) < gameState.levelEarnedScore) {
       gameState.profile.levelScores[gameState.currentLevelId] = gameState.levelEarnedScore;
     }
 
-    updateLiveScoreboardEntry(true);
+    // Recalculate grand total score from profile levels
+    let grandSum = 0;
+    Object.keys(gameState.profile.levelScores).forEach(lvl => {
+      grandSum += Number(gameState.profile.levelScores[lvl] || 0);
+    });
+    gameState.profile.totalScore = grandSum;
+
+    updateLiveScoreboardEntry();
 
     GameStorage.saveData(gameState.profile);
     updateTopBar();
@@ -1935,16 +1955,12 @@
 
     if (gameState.currentLevelId === 5) {
       celebrationEmoji.textContent = '👑';
-      subTitle.textContent = 'Hebat sekali! Anda telah menamatkan kesemua 5 Level Bahasa Arab!';
-      nextBtn.textContent = 'MAIN SEMULA Level INI 🔄';
-    } else if (percent >= 50) {
-      celebrationEmoji.textContent = '🌟';
-      subTitle.textContent = `Hebat! Level ${gameState.currentLevelId + 1} kini telah dibuka untuk anda!`;
-      nextBtn.textContent = `TERUS KE Level ${gameState.currentLevelId + 1} ➔`;
+      subTitle.textContent = 'Hebat sekali! Anda telah menamatkan Level 5!';
+      nextBtn.textContent = 'MAIN SEMULA LEVEL INI 🔄';
     } else {
-      celebrationEmoji.textContent = '🎈';
-      subTitle.textContent = 'Teruskan berusaha! Cuba lagi untuk buka Level seterusnya!';
-      nextBtn.textContent = 'CUBA SEMULA Level INI 🔄';
+      celebrationEmoji.textContent = '🌟';
+      subTitle.textContent = `Hebat! Anda boleh teruskan ke Level ${gameState.currentLevelId + 1} atau pilih mana-mana Level di menu!`;
+      nextBtn.textContent = `TERUS KE LEVEL ${gameState.currentLevelId + 1} ➔`;
     }
 
     triggerConfettiBurst(true);
@@ -1959,7 +1975,7 @@
     confettiC.height = window.innerHeight;
 
     const colors = ['#FF6EA7', '#D44E8C', '#7864D7', '#2CA581', '#FFB800', '#3A8FD6'];
-    const particleCount = isBig ? 120 : 45;
+    const particleCount = isBig ? 110 : 40;
     const particles = [];
 
     for (let i = 0; i < particleCount; i++) {
@@ -1984,7 +2000,7 @@
       particles.forEach(p => {
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.38; // gravity
+        p.vy += 0.38;
         p.rotation += p.vr;
         p.alpha -= 0.015;
 
@@ -2032,9 +2048,18 @@
         const val = inputName.value.trim();
         if (val) {
           gameState.profile.playerName = val;
+          // Switch to this specific player's individual stats
+          const stats = GameStorage.getPlayerStats(val);
+          gameState.profile.levelScores = { ...stats.levelScores };
+          gameState.profile.totalStars = stats.totalStars;
+          gameState.profile.totalScore = stats.totalScore;
+          gameState.levelEarnedScore = 0;
+          gameState.levelEarnedStars = 0;
+          
           GameStorage.saveData(gameState.profile);
           updateTopBar();
-          showToast('Nama pemain disimpan!');
+          renderLevelCards();
+          showToast(`Selamat datang, ${val}!`);
           KawaiiAudio.click();
         } else {
           inputName.classList.add('input-error');
@@ -2060,7 +2085,7 @@
       btnStart.addEventListener('click', () => {
         if (!validatePlayerNameBeforeStart()) return;
         KawaiiAudio.click();
-        startLevel(gameState.profile.unlockedLevel);
+        startLevel(1);
       });
     }
 
@@ -2082,10 +2107,10 @@
     if (btnNextLvl) {
       btnNextLvl.addEventListener('click', () => {
         KawaiiAudio.click();
-        if (gameState.currentLevelId < 5 && gameState.profile.unlockedLevel > gameState.currentLevelId) {
+        if (gameState.currentLevelId < 5) {
           startLevel(gameState.currentLevelId + 1);
         } else {
-          startLevel(gameState.currentLevelId);
+          startLevel(1);
         }
       });
     }
@@ -2098,7 +2123,6 @@
       });
     }
 
-    // Top Bar Home Button with safe null check
     const btnHomeTop = document.getElementById('btnHomeTop');
     if (btnHomeTop) {
       btnHomeTop.addEventListener('click', () => {
@@ -2114,7 +2138,6 @@
       });
     }
 
-    // Top Bar How-To-Play Button with safe null check
     const btnHowToPlayTop = document.getElementById('btnHowToPlayTop');
     if (btnHowToPlayTop) {
       btnHowToPlayTop.addEventListener('click', () => {
@@ -2124,7 +2147,6 @@
       });
     }
 
-    // Scoreboard Modal
     const btnOpenScoreboard = document.getElementById('btnOpenScoreboard');
     if (btnOpenScoreboard) {
       btnOpenScoreboard.addEventListener('click', () => {
@@ -2154,7 +2176,6 @@
       });
     }
 
-    // How to Play Modal Main Menu button
     const btnOpenHowToPlay = document.getElementById('btnOpenHowToPlay');
     if (btnOpenHowToPlay) {
       btnOpenHowToPlay.addEventListener('click', () => {
@@ -2173,7 +2194,6 @@
       });
     }
 
-    // Reset Progress Button
     const btnResetProgress = document.getElementById('btnResetProgress');
     if (btnResetProgress) {
       btnResetProgress.addEventListener('click', () => {
@@ -2186,7 +2206,6 @@
       });
     }
 
-    // Close modals on clicking backdrop
     document.querySelectorAll('.kawaii-modal-backdrop').forEach(backdrop => {
       backdrop.addEventListener('click', (e) => {
         if (e.target === backdrop) {
@@ -2195,7 +2214,15 @@
       });
     });
 
-    // Initial draw of canvas wheel
+    window.addEventListener('resize', () => {
+      const screenWheel = document.getElementById('screenWheel');
+      if (screenWheel && !screenWheel.classList.contains('hidden')) {
+        setupResponsiveCanvas();
+        drawWheel(wheelAngle);
+      }
+    });
+
+    setupResponsiveCanvas();
     drawWheel(0);
   });
   </script>
