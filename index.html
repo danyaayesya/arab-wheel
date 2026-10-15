@@ -222,34 +222,51 @@
       flex-direction: column;
       gap: 6px;
       text-align: left;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .player-input-box label {
-      font-size: clamp(0.8rem, 2.5vw, 0.88rem);
+      font-size: clamp(0.78rem, 2.4vw, 0.88rem);
       font-weight: 700;
       color: var(--lavender-accent);
+      white-space: normal;
+      word-break: break-word;
     }
 
     .input-row {
       display: flex;
-      gap: 8px;
+      gap: clamp(6px, 1.8vw, 8px);
+      width: 100%;
+      align-items: center;
+      min-width: 0;
     }
 
     .input-row input {
-      flex: 1;
+      flex: 1 1 0%;
+      min-width: 0;
+      width: 100%;
       border: 2px solid var(--lavender-soft);
       border-radius: var(--radius-pill);
-      padding: 8px 14px;
-      font-size: clamp(0.85rem, 2.5vw, 0.92rem);
+      padding: clamp(7px, 2.2vw, 9px) clamp(10px, 3vw, 14px);
+      font-size: clamp(0.8rem, 2.5vw, 0.92rem);
       font-family: var(--font-body);
       color: var(--text-main);
       outline: none;
       background: #FFF;
       transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
     }
 
     .input-row input:focus {
       border-color: var(--pink-deep);
+    }
+
+    .input-row .btn-kawaii-secondary {
+      flex-shrink: 0;
+      white-space: nowrap;
+      padding: clamp(7px, 2.2vw, 9px) clamp(12px, 3.2vw, 16px);
+      font-size: clamp(0.78rem, 2.4vw, 0.88rem);
     }
 
     .input-error {
@@ -262,6 +279,24 @@
       0%, 100% { transform: translateX(0); }
       20%, 60% { transform: translateX(-6px); }
       40%, 80% { transform: translateX(6px); }
+    }
+
+    @media (max-width: 360px) {
+      .player-input-box {
+        padding: 8px 10px;
+        margin: 8px 0 12px;
+      }
+      .input-row {
+        gap: 5px;
+      }
+      .input-row input {
+        padding: 6px 10px;
+        font-size: 0.78rem;
+      }
+      .input-row .btn-kawaii-secondary {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+      }
     }
 
     .levels-list {
